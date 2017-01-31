@@ -20,10 +20,16 @@ of the ___1___ get made. Additionally, you generally want to create a ___5___ __
 string representation of the method to be viewed by other developers.'''
 
 
+EASY = 1
+MEDIUM = 2
+HARD = 3
+
+
+
 def check_answer(blank_num, difficulty):
 	#This function takes the question number and difficulty level as input, outputs the answer of that question.
 
-	if difficulty == 1:
+	if difficulty == EASY:
 		if blank_num == 1:
 			return 'world'
 		if blank_num == 2:
@@ -32,7 +38,7 @@ def check_answer(blank_num, difficulty):
 			return 'print'
 		if blank_num == 4:
 			return 'html'
-	if difficulty == 2:
+	if difficulty == MEDIUM:
 		if blank_num == 1:
 			return 'function'
 		if blank_num == 2:
@@ -41,7 +47,7 @@ def check_answer(blank_num, difficulty):
 			return 'None'
 		if blank_num == 4:
 			return 'list'
-	if difficulty == 3:
+	if difficulty == HARD:
 		if blank_num == 1:
 			return 'class'
 		if blank_num == 2:
@@ -86,11 +92,11 @@ def play_game(difficulty):
 
 	max_question_num = 4
 
-	if difficulty == 1:
+	if difficulty == EASY:
 		paragraph = paragraph1
-	if difficulty == 2:
+	if difficulty == MEDIUM:
 		paragraph = paragraph2
-	if difficulty == 3:
+	if difficulty == HARD:
 		paragraph = paragraph3
 		max_question_num = 5
 
@@ -115,15 +121,15 @@ def select_mode():
 	print '\n'
 
 	if user_input == 'easy':
-		if play_game(1) == True:
+		if play_game(EASY) == True:
 		 	print 'Win!'
 		 	
 	elif user_input == 'medium':
-		if play_game(2) == True:
+		if play_game(MEDIUM) == True:
 			print 'Win!'
 
 	elif user_input == 'hard':
-		if play_game(3) == True:
+		if play_game(HARD) == True:
 			print 'Win!'
 			
 	else:
