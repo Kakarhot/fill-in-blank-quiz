@@ -30,42 +30,25 @@ def check_answer(blank_num, difficulty):
 	#This function takes the question number and difficulty level as input, outputs the answer of that question.
 
 	if difficulty == EASY:
-		if blank_num == 1:
-			return 'world'
-		if blank_num == 2:
-			return 'python'
-		if blank_num == 3:
-			return 'print'
-		if blank_num == 4:
-			return 'html'
-	if difficulty == MEDIUM:
-		if blank_num == 1:
-			return 'function'
-		if blank_num == 2:
-			return 'arguments'
-		if blank_num == 3:
-			return 'None'
-		if blank_num == 4:
-			return 'list'
-	if difficulty == HARD:
-		if blank_num == 1:
-			return 'class'
-		if blank_num == 2:
-			return 'method'
-		if blank_num == 3:
-			return '__init__'
-		if blank_num == 4:
-			return 'instance'
-		if blank_num == 5:
-			return '__repr__'
+		easy_answers = ['world', 'python', 'print', 'html']
+		return easy_answers[blank_num - 1]
+
+	elif difficulty == MEDIUM:
+		medium_answers = ['function', 'arguments', 'None', 'list']
+		return medium_answers[blank_num - 1]
+
+	else:
+		hard_answers = ['class', 'method', '__init__', 'instance', '__repr__']
+		return hard_answers[blank_num - 1]
 		
 
 
 
 def ask_question(paragraph, blank_num, guesses, difficulty):
 	#This function takes the paragraph, question number, guesses left and difficulty level as input, outputs whether that question is answered correctly or not.
+	NO_GUESS_LEFT = 0
 
-	if guesses == 0:		
+	if guesses == NO_GUESS_LEFT:		
 		return False
 
 	answer = check_answer(blank_num, difficulty)
@@ -90,19 +73,21 @@ def ask_question(paragraph, blank_num, guesses, difficulty):
 def play_game(difficulty):
 	#This function takes the difficulty level as input, outputs whether the user win or loses the game.
 
-	max_question_num = 4
+	TOTAL_GUESS = 3
 
 	if difficulty == EASY:
 		paragraph = paragraph1
-	if difficulty == MEDIUM:
+		max_question_num = 4
+	elif difficulty == MEDIUM:
 		paragraph = paragraph2
-	if difficulty == HARD:
+		max_question_num = 4
+	else:
 		paragraph = paragraph3
 		max_question_num = 5
 
 	question_num = 1
 	while question_num <= max_question_num:
-		paragraph = ask_question(paragraph, question_num, 3, difficulty)
+		paragraph = ask_question(paragraph, question_num, TOTAL_GUESS, difficulty)
 		if paragraph == False:
 			print 'Game Over'
 			return False
